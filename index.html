@@ -6,6 +6,104 @@
   <script src="your-script.js"></script>
 </head>
 <body>
-  <img id="photo" src="path/to/your/photo.jpg" alt="Photo">
+  <script>
+  /**
+ * @function addPhotoFromGallery
+ * @description Adds a photo from the gallery.
+ *
+ * This function simulates the process of adding a photo from the gallery by displaying a file input dialog and allowing the user to select an image file.
+ * The selected file is then displayed on the page.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // HTML:
+ * // <button onclick="addPhotoFromGallery()">Add Photo</button>
+ *
+ * // JavaScript:
+ * addPhotoFromGallery();
+ */
+function addPhotoFromGallery() {
+  // Create a file input element
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+
+  // Listen for the file selection event
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+
+    // Check if a file was selected
+    if (file) {
+      // Create an image element to display the selected photo
+      const image = document.createElement('img');
+      image.src = URL.createObjectURL(file);
+      image.style.maxWidth = '100%';
+
+      // Append the image to the document body
+      document.body.appendChild(image);
+    }
+  });
+
+  // Trigger the file input dialog
+  fileInput.click();
+}
+
+/**
+ * @function detectFaces
+ * @description Detects faces on the added photo using FaceAPI.
+ *
+ * This function uses the FaceAPI library to detect faces on the added photo.
+ * The detected faces are then displayed on the page.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // HTML:
+ * // <button onclick="detectFaces()">Detect Faces</button>
+ *
+ * // JavaScript:
+ * detectFaces();
+ */
+function detectFaces() {
+  // Get the added photo element
+  const photoElement = document.querySelector('img');
+
+  // Check if a photo has been added
+  if (photoElement) {
+    // Call the FaceAPI library to detect faces on the photo
+    // Replace this code with the actual FaceAPI library code
+    const detectedFaces = [
+      { x: 100, y: 100, width: 200, height: 200 },
+      { x: 300, y: 200, width: 150, height: 150 },
+    ];
+
+    // Display the detected faces on the photo
+    detectedFaces.forEach((face) => {
+      const faceElement = document.createElement('div');
+      faceElement.style.position = 'absolute';
+      faceElement.style.border = '2px solid red';
+      faceElement.style.left = `${face.x}px`;
+      faceElement.style.top = `${face.y}px`;
+      faceElement.style.width = `${face.width}px`;
+      faceElement.style.height = `${face.height}px`;
+
+      // Append the face element to the document body
+      document.body.appendChild(faceElement);
+    });
+  }
+}
+
+// Example usage:
+// HTML:
+// <button onclick="addPhotoFromGallery()">Add Photo</button>
+// <button onclick="detectFaces()">Detect Faces</button>
+
+// JavaScript:
+// Click the "Add Photo" button to add a photo from the gallery
+addPhotoFromGallery();
+
+// Click the "Detect Faces" button to detect faces on the added photo
+detectFaces();
+                          </script>
 </body>
 </html>
